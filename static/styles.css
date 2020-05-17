@@ -1,0 +1,9 @@
+
+.body{
+  background-image: url("heart.jpg");
+  background-color: #cccccc;
+  height: 20rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}

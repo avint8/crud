@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'styles.css'  %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>CRUD</title>
+
+    </head>
+    <body class="container panel panel-danger body">
+        <h2 class="panel-heading" style="text-align: center;">My CRUD app</h2>
+        <div class="jumbotron">
+            <div class="row">
+                <button id="create" class="btn btn-success btn-lg">create</button>
+                <button id="edit" class="btn btn-warning btn-lg">edit</button>
+                <button id="delete" class="btn btn-danger btn-lg">delete</button>
+
+            </div>
+            
+           <hr>
+            
+        
+        <div  id="inp">
+            <div id='createf' >
+
+                <form action='index' method="POST">
+
+                    {% csrf_token %}
+                    <input type="text" name="name" required placeholder="Name" class="form-control">
+                    <input type="text" name="text" required placeholder="Text" class="form-control">
+                    <input type="submit" class="btn btn-primary btn-sm">
+                </form>
+            </div>
+            <div id="editf">
+                <form action='edit' method="POST">
+
+                    {% csrf_token %}
+                    <input type="number" name='id' required placeholder="id" class="form-control">
+                    <input type="text" name="name" required placeholder="Name" class="form-control">
+                    <input type="text" name="text" required placeholder="Text" class="form-control">
+                    <input type="submit" class="btn btn-primary btn-sm">
+                </form>
+            </div>
+            <div id="deletef">
+                <form action="delete" method="POST">
+
+                    {% csrf_token %}
+                    <input type="number" name='id' required placeholder="id" class="form-control">
+                    <input type="submit" class="btn btn-primary btn-sm">
+                </form>
+            </div>
+        </div>
+    </div>
+        <div class="panel panel-info">
+            <div class="panel-heading" style="text-align: center;">New updates</div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {% for d in data %}
+                    <li class="list-group-item">                    
+                        <div class="row">
+                        <div class="col-sm-1">{{d.id}}</div>
+                        <div class="col-sm-2">{{d.name}}</div>
+                        <div class="col-sm-6">{{d.text}}</div>
+                        <div class="col-sm-3">Created:{{d.created}}  Edited:{{d.created}}</div>
+                    </div></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <script src="{% static 'script.js'  %}"></script>
+    </body>
+</html>
